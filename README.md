@@ -3,5 +3,8 @@
 ## mc-cnn
 
 代码来自**Stereo Matching by Training a Convolutional Neural Network to Compare Image Patches**
+<<<<<<< HEAD
 
 ## 测试branch
+
+## feature b
