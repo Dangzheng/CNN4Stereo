@@ -3,6 +3,7 @@ require 'optim'
 require 'cunn'
 require 'image'
 require 'gnuplot'
+require 'socket'
 
 local c = require 'trepl.colorize'
 
@@ -125,6 +126,7 @@ for i = opt.start_id, opt.start_id+opt.n-1 do
 
     local l_fn = string.format('%s/%s/%06d_10.png', opt.data_root, left_folder, file_id)
     local r_fn = string.format('%s/%s/%06d_10.png', opt.data_root, right_folder, file_id)
+    
     local l_img = image.load(l_fn, nChannel, 'byte'):cuda()
     local r_img = image.load(r_fn, nChannel, 'byte'):cuda()
     l_img:add(-l_img:mean()):div(l_img:std())
@@ -137,6 +139,7 @@ for i = opt.start_id, opt.start_id+opt.n-1 do
     if opt.small == 1 then
         -- return cuda tensor
         left_feat = bottom:forward(l_img:view(1, nChannel, img_h, img_w)):clone()
+        print('reach here');socket.sleep(99999999)
         right_feat = bottom:forward(r_img:view(1, nChannel, img_h, img_w)):clone()
     else
         left_feat = my_forward(bottom, l_img)
